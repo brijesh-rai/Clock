@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background: #9796f0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fbc7d4, #9796f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.nav-bar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 100px;
+    background-color: rgba(141, 137, 137, 0.2);
+    box-shadow:2px 2px 14px 1px rgba(117, 117, 117, 0.568);
+}
+li{
+    display: inline-block;
+    margin: 0px 20px;
+    padding: 5px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+li:hover{
+    color: rgb(95, 0, 219);
+    cursor: pointer;
+}
+h1,.timer{
+    text-align: center;
+}
+h1{
+    font-size: 3em;
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+#Timer, #Stop-watch, #Alarm{
+    display: none;
+}
+#Timer, #Clock, #Stop-watch, #Alarm{
+    animation: 0.5s fade ;
+}
+@keyframes fade{
+    0%{
+        opacity:0;
+    }
+    
+    100%{
+        opacity: 1;
+    }
+}
+
+.style{
+    color: rgb(95, 0, 219);
+    text-decoration: underline;
+}
+.time{
+    font-size: 6em;
+    text-align: center;
+    width: 100px;
+    border-radius: 5px;
+    outline:none;
+    padding: 20px;
+    margin:10px;
+    background-color: black;
+    color: white;
+}
+.colon{
+    font-size: 10em;
+}
+.colon-clock{
+    font-size: 6em;
+}
+.timer{
+    /* border:2px solid black; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.clock-time{
+    margin-top: 50px;
+}
+i{
+    font-size: 2em;
+}
+.am-pm{
+    margin-left: 20px;
+}

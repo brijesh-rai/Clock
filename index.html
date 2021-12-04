@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="nav-bar">
+        <div>
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="links">
+            <ul>
+                <li id="Clock-btn" class="style">Clock</li>
+                <li id="Stopwatch-btn">Stopwatch</li>
+                <li id="Timer-btn">Timer</li>
+                <li id="Alarm-btn">Alarm</li>
+            </ul>
+        </div>
+    </div>
+    <h1 id="heading">Clock</h1>
+
+    <!-- ******** TIMER ********* -->
+    <div id="Timer">
+        <div class="timer">
+            <div>
+                <i class="fas fa-chevron-up"></i><br><br>
+                <label class="time" id="hours">00</label><br><br>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <label class="colon">:</label>
+            <div>
+                <i class="fas fa-chevron-up"></i><br><br>
+                <label class="time" id="min">00</label><br><br>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <label class="colon">:</label>
+            <div>
+                <i class="fas fa-chevron-up"></i><br><br>
+                <label class="time" id="sec">00</label><br><br>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *********CLOCK********** -->
+    <div id="Clock">
+        <div class="clock-time timer">
+            <div>
+                <label class="time" id="real-hours">00</label>
+            </div>
+            <label class="colon-clock">:</label>
+            <div>
+                <label class="time" id="real-min">00</label>
+            </div>
+            <label class="colon-clock">:</label>
+            <div>
+                <label class="time" id="real-sec">00</label>
+            </div>
+            <div class="am-pm">
+                <label class="time" id="am-pm">AM</label>
+            </div>
+        </div>
+    </div>
+    <!-- **********STOPWATCH******** -->
+    <div id="Stop-watch">
+        
+    </div>
+    <!-- ***********ALARM*********** -->
+    <div id="Alarm">
+        
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
