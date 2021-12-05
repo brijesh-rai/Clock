@@ -164,6 +164,16 @@ function count(){
             timer_hrs.textContent = "00"
             timer_min.textContent = "00"
             timer_sec.textContent = "00"
+            start_btn.removeEventListener("click",count)
+            timer_sec.addEventListener("mousewheel",scroll_sec)
+            timer_min.addEventListener("mousewheel",scroll_min)
+            timer_hrs.addEventListener("mousewheel",scroll_hrs)
+            timer_sec.style.cursor = "pointer"
+            timer_min.style.cursor = "pointer"
+            timer_hrs.style.cursor = "pointer"
+            cancel_btn.style.display = "none"
+            start_btn.style.display = "block"
+            pause_btn.style.display = 'none'
         })
 
 
