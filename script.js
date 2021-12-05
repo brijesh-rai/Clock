@@ -174,6 +174,7 @@ function count(){
             cancel_btn.style.display = "none"
             start_btn.style.display = "block"
             pause_btn.style.display = 'none'
+            resume_btn.style.display = "none"
         })
 
 
