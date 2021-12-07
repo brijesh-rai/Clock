@@ -26,7 +26,7 @@
 
     <!-- ******** TIMER ********* -->
     <div id="Timer">
-        <div class="timer">
+        <div class="div-common">
             <div>
                 <label class="time" id="timer-hours">00</label>
             </div>
@@ -41,9 +41,9 @@
             <p>sec</p>
         </div>
         <div class="button">
-            <button id="start-btn">Start</button>
-            <button id="pause-btn">Pause</button>
-            <button id="resume-btn">Resume</button>
+            <button class="start" id="start-btn">Start</button>
+            <button class="start" id="pause-btn">Pause</button>
+            <button class="start" id="resume-btn">Resume</button>
             <button id="cancel-btn">Cancel</button>
         </div>
     </div>
@@ -51,7 +51,7 @@
 
     <!-- *********CLOCK********** -->
     <div id="Clock">
-        <div class="timer">
+        <div class="div-common">
             <div>
                 <label class="time" id="real-hours">00</label>
             </div>
@@ -72,11 +72,57 @@
 
     <!-- **********STOPWATCH******** -->
     <div id="Stop-watch">
-        
+        <div class="div-common">
+            <div>
+                <label class="time" id="sw-min">00</label>
+            </div>
+            <label class="colon">:</label>
+            <div>
+                <label class="time" id="sw-sec">00</label>
+            </div>
+            <label class="colon">.</label>
+            <div>
+                <label class="time" id="sw-ms">00</label>
+            </div>
+        </div>
+        <div class="button">
+            <button class="start" id="sw-start-btn">Start</button>
+            <button class="lap-reset" id="sw-lap-btn">Lap</button>
+            <button class="lap-reset" id="sw-reset-btn">Reset</button>
+            <button class="start" id="sw-pause-btn">Pause</button>
+            <button class="start" id="sw-resume-btn">Resume</button>  
+        </div>
+        <div id="lap">
+        </div>
     </div>
+
+
+
     <!-- ***********ALARM*********** -->
     <div id="Alarm">
-        
+        <div class="div-common">
+            <div>
+                <label class="time" id="alarm-hours">12</label>
+            </div>
+            <label class="colon">:</label>
+            <div>
+                <label class="time" id="alarm-min">00</label>
+            </div>
+            <div>
+                <label class="time am" id="alarm-am-pm">AM</label>
+            </div>
+        </div>
+        <div class="button">
+            <button class="start" id="alarm-add-btn">Add</button>
+            <button id="alarm-clear-btn">Clear</button>
+        </div>
+        <div id="alarm-div">
+            <div>
+                <input type="checkbox">
+                <label>01:50 AM</label>
+                <label>rings in 2 hours 30 min</label>
+            </div>
+        </div>
     </div>
 <script src="script.js"></script>
 </body>
