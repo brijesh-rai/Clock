@@ -186,7 +186,7 @@ function cancel(){
 setInterval(realtime,0)
 function realtime(){
     var hrs_pad
-    let real = new Date()
+    let  real = new Date()
     let hrs = real.getHours()%24
     let a = (hrs>=12) ? am_pm.innerText="PM" : am_pm.innerText="AM"
     if(hrs>12){
@@ -300,10 +300,13 @@ sw_lap_btn.addEventListener("click",function(){
     let lb_2 = document.createElement("label")
     let lb_3 = document.createElement("label")
     if(bg_switch!=0){
-        divv.style.backgroundColor = "rgba(175, 180, 255, 0.582)"
+        divv.style.backgroundColor = "rgb(150,0,0)"
+        divv.style.color = "white"
         bg_switch = 0
     }
     else{
+        divv.style.backgroundColor = "rgb(100,0,0)"
+        divv.style.color = "white"
         bg_switch = 1
     }
     lb_1.textContent = String(++lap_count).padStart(2,"0")
@@ -402,10 +405,71 @@ function scroll_alarm_ampm(e){
 let alarm_add_btn = document.getElementById("alarm-add-btn")
 let alarm_clear_btn = document.getElementById("alarm-clear-btn")
 let alarm_div = document.getElementById("alarm-div")
+
+
+// **********Alarm add button Functionality**************
+var alarm_div_childs = alarm_div.childNodes
+let count_chk = 0
+let al_time_array = []
+let alarm_play = new Audio("./audio.mp3")
+setInterval(function(){
+    let real = new Date()
+    let ring_hr = real.getHours()
+    let ring_min = real.getMinutes()
+    let total_min = (ring_hr*60)+ring_min
+    for(j=0;j<al_time_array.length;j++){
+        if(total_min-al_time_array[j] == 0){
+            al_time_array.splice(j,1)
+            alarm_play.play()
+        }
+    }
+},1000)
 alarm_add_btn.addEventListener("click",function(){
+    let al_real_hr = Number(al_h)
+    let al_real_min = Number(al_m)
+    if(al_real_hr == 12 && al_am_pm == "AM"){
+        al_real_hr = 0
+    }
+    else if(al_am_pm == "PM" && al_real_hr!=12)
+    {
+        al_real_hr =al_real_hr + 12
+    }
+    let al_total_min =(al_real_hr*60)+al_real_min
+    al_time_array.push(al_total_min)
+    
     alarm_div.style.display = "block"
     alarm_clear_btn.style.display = "block"
+    let al_div = document.createElement("div")
+    let al_chk = document.createElement("input")
+    al_chk.id = ++count_chk
+    al_chk.setAttribute("type","checkbox")
+    let al_rem = document.createElement("label")
+    al_rem.textContent = "Rings in 2 hours 30 min"
+    let al_time = document.createElement("label")
+    al_time.textContent = al_h+":"+al_m+" "+al_am_pm
+    al_div.appendChild(al_chk)
+    al_div.appendChild(al_time)
+    al_div.appendChild(al_rem)
+    alarm_div.appendChild(al_div)
 })
+
+// ******************Alarm clear button functionality***********
+
+alarm_clear_btn.addEventListener("click",function(){  
+   for(i=1;i<=alarm_div_childs.length;)
+   {
+       var al_div_child_childs  = alarm_div_childs[i].childNodes
+       var child_chk = al_div_child_childs[0].id
+       var chk_id = document.getElementById(child_chk)
+       if(chk_id.checked == true){
+            alarm_div.removeChild(alarm_div_childs[i])
+        }
+        else{
+            i++
+        }
+   }
+})
+
 
 // Timer Navigation button
 timer_btn.addEventListener("click",function(){

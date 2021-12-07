@@ -151,7 +151,7 @@ button:hover{
 #lap, #alarm-div{
     animation:0.2s fade;
     display: none;
-    overflow-y:scroll;
+    overflow:scroll;
     height: 100px;
     width: 40%;
     margin: auto;
@@ -159,9 +159,9 @@ button:hover{
     margin-top: 40px;
     border-radius: 5px;
 }
-/* #lap::-webkit-scrollbar{
+#lap::-webkit-scrollbar, #alarm-div::-webkit-scrollbar{
     display: none;
-} */
+}
 #lap div, #alarm-div div{
     display: flex;
     /* border: 2px solid red; */
@@ -171,4 +171,3 @@ button:hover{
     /* background-color: rgba(175, 180, 255, 0.582); */
     animation: 0.2s fade;
 }
-
