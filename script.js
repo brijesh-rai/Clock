@@ -332,6 +332,7 @@ sw_lap_btn.addEventListener("click",function(){
 let alarm_hr = document.getElementById("alarm-hours")
 let alarm_min = document.getElementById("alarm-min")
 let alarm_am_pm = document.getElementById("alarm-am-pm")
+let al_snooze = document.getElementById("alarm-snooze-btn")
 let al_h = alarm_hr.textContent
 let al_m = alarm_min.textContent
 let al_am_pm = alarm_am_pm.textContent
@@ -406,24 +407,42 @@ let alarm_add_btn = document.getElementById("alarm-add-btn")
 let alarm_clear_btn = document.getElementById("alarm-clear-btn")
 let alarm_div = document.getElementById("alarm-div")
 
-
 // **********Alarm add button Functionality**************
-var alarm_div_childs = alarm_div.childNodes
+let total_min
 let count_chk = 0
 let al_time_array = []
+let lbl_id_array =[]
 let alarm_play = new Audio("./audio.mp3")
-setInterval(function(){
+var ring_text
+// var switchh
+let timeout = setInterval(function(){
     let real = new Date()
     let ring_hr = real.getHours()
     let ring_min = real.getMinutes()
-    let total_min = (ring_hr*60)+ring_min
+    total_min = (ring_hr*60)+ring_min
+    let alarm_div_childs = alarm_div.childNodes
     for(j=0;j<al_time_array.length;j++){
+        let al_div_child_childs  = alarm_div_childs[j+1]
         if(total_min-al_time_array[j] == 0){
-            al_time_array.splice(j,1)
-            alarm_play.play()
+            ring_text = "Ringing..."
+            al_div_child_childs.classList.add("ringing")
+            alarm_play.play() 
+        }else{
+            ring_text = ""
+            al_div_child_childs.classList.remove("ringing")
+            if(ring_text == ""){
+                alarm_play.pause()
+            }
         }
+           
     }
-},1000)
+    // al_snooze.addEventListener("click",function(){
+    //     switchh = 1
+    // })
+},0)
+
+
+
 alarm_add_btn.addEventListener("click",function(){
     let al_real_hr = Number(al_h)
     let al_real_min = Number(al_m)
@@ -436,15 +455,45 @@ alarm_add_btn.addEventListener("click",function(){
     }
     let al_total_min =(al_real_hr*60)+al_real_min
     al_time_array.push(al_total_min)
-    
     alarm_div.style.display = "block"
     alarm_clear_btn.style.display = "block"
     let al_div = document.createElement("div")
+    al_div.style.borderBottom = "1px solid black"
+    
     let al_chk = document.createElement("input")
     al_chk.id = ++count_chk
     al_chk.setAttribute("type","checkbox")
     let al_rem = document.createElement("label")
-    al_rem.textContent = "Rings in 2 hours 30 min"
+    al_rem.id = count_chk+"lbl"
+    
+    lbl_id_array.push(count_chk+"lbl")
+    setInterval(rem,10)
+    function rem(){
+        for(k=0;k<al_time_array.length;k++){
+            let g = al_time_array[k]
+            if(g != undefined){
+                var h = g-total_min
+                if(h<0){
+                    h = (1440 - total_min) + g
+                }
+                let hh = String(h/60).slice(0,String(h/60).indexOf("."))
+                if(h%60 == 0){
+                    hh = h/60
+                }
+                let mm = h%60
+                let zz = lbl_id_array[k]
+                let ring_lbl = document.getElementById(zz)
+                if(ring_text == ""){
+                    ring_lbl.textContent = "Rings in "+String(hh).padStart(2,"0")+" hours "+String(mm).padStart(2,"0")+" minutes"
+                }
+                else{
+                    ring_lbl.textContent = ring_text
+                }
+                
+            }
+            
+        }
+    }
     let al_time = document.createElement("label")
     al_time.textContent = al_h+":"+al_m+" "+al_am_pm
     al_div.appendChild(al_chk)
@@ -454,15 +503,17 @@ alarm_add_btn.addEventListener("click",function(){
 })
 
 // ******************Alarm clear button functionality***********
-
 alarm_clear_btn.addEventListener("click",function(){  
-   for(i=1;i<=alarm_div_childs.length;)
+   var alarm_div_childs = alarm_div.childNodes
+   for(i=0;i<al_time_array.length;)
    {
-       var al_div_child_childs  = alarm_div_childs[i].childNodes
+       var al_div_child_childs  = alarm_div_childs[i+1].childNodes
        var child_chk = al_div_child_childs[0].id
        var chk_id = document.getElementById(child_chk)
        if(chk_id.checked == true){
-            alarm_div.removeChild(alarm_div_childs[i])
+            alarm_div.removeChild(alarm_div_childs[i+1])
+            al_time_array.splice(i,1)
+            lbl_id_array.splice(i,1)
         }
         else{
             i++

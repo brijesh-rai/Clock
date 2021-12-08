@@ -171,3 +171,13 @@ button:hover{
     /* background-color: rgba(175, 180, 255, 0.582); */
     animation: 0.2s fade;
 }
+input{
+    margin: 2px;
+}
+.ringing{
+    background-color: rgb(192, 0, 0) !important;
+    color: white !important;
+}
+#alarm-snooze-btn{
+    display: none;
+}
