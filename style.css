@@ -36,6 +36,9 @@ h1{
     margin-top: 80px;
     margin-bottom: 30px;
 }
+#Timer, #Alarm{
+    margin-top: -15px;
+}
 #Timer, #Stop-watch, #Alarm{
     display: none;
 }
@@ -84,6 +87,9 @@ h1{
     justify-content: center;
     margin-top: 50px;
 }
+.special-div{
+    margin-top: 10px;
+}
 #Timer div label:hover, #Alarm div label:hover{
     cursor:pointer;
 }
@@ -94,17 +100,34 @@ p{
 i{
     font-size: 2em;
 }
+.icons{
+    /* border: 1px solid red; */
+    width: 100%;
+    text-align: center;
+    background-color: rgba(58, 58, 58, 0.2);
+    border-radius: 15px ;
+    padding: 5px 0;
+}
+.icons:hover{
+    cursor: pointer;
+}
 .am-pm{
     margin-left: 20px;
 }
-.am{
+#special-colon{
+    margin-top: 53px;
+}
+.move{
     margin-left: 30px;
 }
 .button{
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: center;
     margin-top: 70px;
+}
+.special-btn{
+    margin-top: -35px !important;
 }
 button:hover{
     cursor: pointer;
@@ -117,6 +140,9 @@ button:hover{
     padding: 0.5em 1em;
     margin: 0px 10px;
     border: none;
+}
+.special{
+    margin-top: 110px;
 }
 .start{
     background-color: rgb(0, 135, 0);
@@ -180,4 +206,65 @@ input{
 }
 #alarm-snooze-btn{
     display: none;
+} 
+
+@media screen and (max-width:768px) {
+    .nav-bar{
+        padding: 10px 10px;
+    }
+    li{
+        font-size:14px ;
+        margin: 0px 8px;
+    }
+    i{
+        font-size: 1.2em;
+        padding-top:2px ;
+    }
+    h1{
+        margin-top: 50px;
+    }
+    .time{
+        font-size: 2.8em;
+        width: 5px;
+        padding:10px;
+        margin:0px;
+    }
+    .colon{
+        font-size: 2.8em;
+    }
+    .am-pm{
+        margin-left: 10px;
+    }
+    .button{
+        margin-top: 45px;
+    }
+    #lap, #alarm-div{
+        height: 160px;
+        width: 90%;
+    }
+    .button button{
+        font-size: 1em;
+        width: 107px;
+    }
+    p{
+        font-size: 12px;
+    }
+    .special{
+        padding: 0px 5px;
+        margin-top: 60px;
+    }
+    .move{
+        margin-left: 15px;
+    }
+    #special-colon{
+        margin-top: 45px;
+    }
+    #al-hours-up{
+        margin-top: 0px;
+    }
+    .al-button{
+        margin: auto;
+        margin-top: 50px;
+        width: 80%;
+    }
 }

@@ -27,26 +27,71 @@ let start_btn = document.getElementById("start-btn")
 let cancel_btn = document.getElementById("cancel-btn")
 let pause_btn = document.getElementById("pause-btn")
 let resume_btn = document.getElementById("resume-btn")
+let hrs_up = document.getElementById("hrs-up")
+let hrs_down = document.getElementById("hrs-down")
+let min_up = document.getElementById("min-up")
+let min_down = document.getElementById("min-down")
+let sec_up = document.getElementById("sec-up")
+let sec_down = document.getElementById("sec-down")
 let h = timer_hrs.textContent
 let m = timer_min.textContent
 let s = timer_sec.textContent
-
+function hours_up(){
+    if(h<23){
+        h=++h
+        h = String(h).padStart(2,"0")
+        timer_hrs.textContent = h
+    }
+}
+function hours_down(){
+    if(h>0){
+        h =--h
+        h = String(h).padStart(2,"0")
+        timer_hrs.textContent = h
+    }
+}
+function minutes_up(){
+    if(m<59){
+        m = ++m
+        m = String(m).padStart(2,"0")
+        timer_min.textContent = m
+    }
+}
+function minutes_down(){
+    if(m>0){
+        m = --m
+        m = String(m).padStart(2,"0")
+        timer_min.textContent = m
+    }
+}
+function seconds_up(){
+    if(s<59){
+        s = ++s
+        s = String(s).padStart(2,"0")
+        timer_sec.textContent = s
+    }
+}
+function seconds_down(){
+    if(s>0){
+        s = --s
+        s = String(s).padStart(2,"0")
+        timer_sec.textContent = s
+    }
+}
+hrs_up.addEventListener("click",hours_up)
+hrs_down.addEventListener("click",hours_down)
+min_up.addEventListener("click",minutes_up)
+min_down.addEventListener("click",minutes_down)
+sec_up.addEventListener("click",seconds_up)
+sec_down.addEventListener("click",seconds_down)
 // ******************Scroll Functionality for hours div*****************
 timer_hrs.addEventListener("mousewheel",scroll_hrs)
 function scroll_hrs(e){
     if(e.wheelDelta<0){
-        if(h<23){
-            h=++h
-            h = String(h).padStart(2,"0")
-            timer_hrs.textContent = h
-        }
+        hours_up()
       }
       else if(e.wheelDelta>0){
-        if(h>0){
-            h =--h
-            h = String(h).padStart(2,"0")
-            timer_hrs.textContent = h
-        }
+        hours_down()
       }
 }
 
@@ -54,18 +99,10 @@ function scroll_hrs(e){
 timer_min.addEventListener("mousewheel",scroll_min)
 function scroll_min(e){
     if(e.wheelDelta<0){
-        if(m<59){
-            m = ++m
-            m = String(m).padStart(2,"0")
-            timer_min.textContent = m
-        }
+        minutes_up()
       }
       else if(e.wheelDelta>0){
-        if(m>0){
-            m = --m
-            m = String(m).padStart(2,"0")
-            timer_min.textContent = m
-        }
+        minutes_down()
       }
 }
 
@@ -73,18 +110,10 @@ function scroll_min(e){
 timer_sec.addEventListener("mousewheel",scroll_sec)
 function scroll_sec(e){
     if(e.wheelDelta<0){
-        if(s<59){
-            s = ++s
-            s = String(s).padStart(2,"0")
-            timer_sec.textContent = s
-        }
+        seconds_up()
       }
       else if(e.wheelDelta>0){
-        if(s>0){
-            s = --s
-            s = String(s).padStart(2,"0")
-            timer_sec.textContent = s
-        }
+        seconds_down()
       }
 }
 
@@ -333,32 +362,81 @@ let alarm_hr = document.getElementById("alarm-hours")
 let alarm_min = document.getElementById("alarm-min")
 let alarm_am_pm = document.getElementById("alarm-am-pm")
 let al_snooze = document.getElementById("alarm-snooze-btn")
+let al_hrs_up = document.getElementById("al-hrs-up")
+let al_hrs_down = document.getElementById("al-hrs-down")
+let al_min_up = document.getElementById("al-min-up")
+let al_min_down = document.getElementById("al-min-down")
+let ampm_change_up = document.getElementById("ampm-change-up")
+let ampm_change_down = document.getElementById("ampm-change-down")
 let al_h = alarm_hr.textContent
 let al_m = alarm_min.textContent
 let al_am_pm = alarm_am_pm.textContent
-
+al_hrs_up.addEventListener("click",al_hours_up)
+al_hrs_down.addEventListener("click",al_hours_down)
+al_min_up.addEventListener("click",al_minutes_up)
+al_min_down.addEventListener("click",al_minutes_down)
+ampm_change_up.addEventListener("click",ampm_changeto_am)
+ampm_change_down.addEventListener("click",ampm_changeto_pm)
+function al_hours_up(){
+    if(al_h<13){
+        al_h=++al_h
+        if(al_h>12){
+            al_h = 1
+        }
+        al_h = String(al_h).padStart(2,"0")
+        alarm_hr.textContent = al_h
+    }
+}
+function al_hours_down(){
+    if(al_h>0){
+        al_h =--al_h
+        if(al_h<1){
+            al_h = 12
+        }
+        al_h = String(al_h).padStart(2,"0")
+        alarm_hr.textContent = al_h
+    }
+}
+function al_minutes_up(){
+    if(al_m<60){
+        al_m = ++al_m
+        if(al_m>=60){
+            al_m = 0
+        }
+        al_m = String(al_m).padStart(2,"0")
+        alarm_min.textContent = al_m
+    }
+}
+function al_minutes_down(){
+    if(al_m>-1){
+        al_m = --al_m
+        if(al_m<0){
+            al_m = 59
+        }
+        al_m = String(al_m).padStart(2,"0")
+        alarm_min.textContent = al_m
+    }
+}
+function ampm_changeto_pm(){
+    if(al_am_pm == "AM"){
+        al_am_pm = "PM"
+        alarm_am_pm.textContent = al_am_pm
+    }
+}
+function ampm_changeto_am(){
+    if(al_am_pm == "PM"){
+        al_am_pm = "AM"
+        alarm_am_pm.textContent = al_am_pm
+    }
+}
 // ****************Scroll functionality for Alarm hours div************
 alarm_hr.addEventListener("mousewheel",scroll_alarm_hrs)
 function scroll_alarm_hrs(e){
     if(e.wheelDelta<0){
-        if(al_h<13){
-            al_h=++al_h
-            if(al_h>12){
-                al_h = 1
-            }
-            al_h = String(al_h).padStart(2,"0")
-            alarm_hr.textContent = al_h
-        }
+        al_hours_up()
       }
       else if(e.wheelDelta>0){
-        if(al_h>0){
-            al_h =--al_h
-            if(al_h<1){
-                al_h = 12
-            }
-            al_h = String(al_h).padStart(2,"0")
-            alarm_hr.textContent = al_h
-        }
+        al_hours_down
       }
 }
 
@@ -366,24 +444,10 @@ function scroll_alarm_hrs(e){
 alarm_min.addEventListener("mousewheel",scroll_alarm_min)
 function scroll_alarm_min(e){
     if(e.wheelDelta<0){
-        if(al_m<60){
-            al_m = ++al_m
-            if(al_m>=60){
-                al_m = 0
-            }
-            al_m = String(al_m).padStart(2,"0")
-            alarm_min.textContent = al_m
-        }
+        al_minutes_up()
       }
       else if(e.wheelDelta>0){
-        if(al_m>-1){
-            al_m = --al_m
-            if(al_m<0){
-                al_m = 59
-            }
-            al_m = String(al_m).padStart(2,"0")
-            alarm_min.textContent = al_m
-        }
+        al_minutes_down()
       }
 }
 
@@ -391,16 +455,10 @@ function scroll_alarm_min(e){
 alarm_am_pm.addEventListener("mousewheel",scroll_alarm_ampm)
 function scroll_alarm_ampm(e){
     if(e.wheelDelta<0){
-        if(al_am_pm == "AM"){
-            al_am_pm = "PM"
-            alarm_am_pm.textContent = al_am_pm
-        }
+        ampm_changeto_pm()
     }
     else if(e.wheelDelta>0){
-        if(al_am_pm == "PM"){
-            al_am_pm = "AM"
-            alarm_am_pm.textContent = al_am_pm
-        }
+        ampm_changeto_am()
     }
 }
 let alarm_add_btn = document.getElementById("alarm-add-btn")
@@ -413,10 +471,15 @@ let count_chk = 0
 let al_time_array = []
 let lbl_id_array =[]
 let alarm_play = new Audio("./audio.mp3")
-var ring_text
-// var switchh
-let timeout = setInterval(function(){
+var ring_text = "Ringing..."
+let snooze=1
+    setInterval(function(){
     let real = new Date()
+    let al_seconds = real.getSeconds()
+    if(al_seconds == 0){
+        snooze=1
+        alarm_play.currentTime = 0
+    }
     let ring_hr = real.getHours()
     let ring_min = real.getMinutes()
     total_min = (ring_hr*60)+ring_min
@@ -424,26 +487,28 @@ let timeout = setInterval(function(){
     for(j=0;j<al_time_array.length;j++){
         let al_div_child_childs  = alarm_div_childs[j+1]
         if(total_min-al_time_array[j] == 0){
-            ring_text = "Ringing..."
-            al_div_child_childs.classList.add("ringing")
-            alarm_play.play() 
-        }else{
-            ring_text = ""
-            al_div_child_childs.classList.remove("ringing")
-            if(ring_text == ""){
-                alarm_play.pause()
+            if(alarm_play.currentTime<1 && snooze==1){
+                alarm_play.play() 
             }
-        }
-           
+            al_div_child_childs.classList.add("ringing")
+            
+        }else{
+            al_div_child_childs.classList.remove("ringing")
+        }  
     }
-    // al_snooze.addEventListener("click",function(){
-    //     switchh = 1
-    // })
 },0)
 
-
+al_snooze.addEventListener("click",function(){
+    snooze = 0
+     alarm_play.pause() 
+     alarm_play.currentTime = 0
+     setTimeout(function(){
+        snooze = 1
+     },15000)   
+})
 
 alarm_add_btn.addEventListener("click",function(){
+    al_snooze.style.display = "block"
     let al_real_hr = Number(al_h)
     let al_real_min = Number(al_m)
     if(al_real_hr == 12 && al_am_pm == "AM"){
@@ -467,30 +532,28 @@ alarm_add_btn.addEventListener("click",function(){
     al_rem.id = count_chk+"lbl"
     
     lbl_id_array.push(count_chk+"lbl")
-    setInterval(rem,10)
+    setInterval(rem,0)
     function rem(){
         for(k=0;k<al_time_array.length;k++){
             let g = al_time_array[k]
-            if(g != undefined){
-                var h = g-total_min
-                if(h<0){
-                    h = (1440 - total_min) + g
-                }
-                let hh = String(h/60).slice(0,String(h/60).indexOf("."))
-                if(h%60 == 0){
-                    hh = h/60
-                }
-                let mm = h%60
-                let zz = lbl_id_array[k]
-                let ring_lbl = document.getElementById(zz)
-                if(ring_text == ""){
-                    ring_lbl.textContent = "Rings in "+String(hh).padStart(2,"0")+" hours "+String(mm).padStart(2,"0")+" minutes"
-                }
-                else{
-                    ring_lbl.textContent = ring_text
-                }
-                
+            var h = g-total_min
+            if(h<0){
+                h = (1440 - total_min) + g
             }
+            let hh = String(h/60).slice(0,String(h/60).indexOf("."))
+            if(h%60 == 0){
+                hh = h/60
+            }
+            let mm = h%60
+            let zz = lbl_id_array[k]
+            let ring_lbl = document.getElementById(zz)
+            if(hh == 0 && mm == 0){
+                ring_lbl.textContent = ring_text
+            }
+            else{
+                ring_lbl.textContent = "Rings in "+String(hh).padStart(2,"0")+" hours "+String(mm).padStart(2,"0")+" minutes"
+            }
+                
             
         }
     }

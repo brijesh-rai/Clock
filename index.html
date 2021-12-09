@@ -26,25 +26,37 @@
 
     <!-- ******** TIMER ********* -->
     <div id="Timer">
-        <div class="div-common">
+        <div class="div-common special-div">
             <div>
-                <label class="time" id="timer-hours">00</label>
+                <i id="hrs-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="timer-hours">00</label>
+                </div><br>
+                <i id="hrs-down" class="fas fa-caret-down icons"></i>
             </div>
-            <p>hours</p>
+            <p class="special">hours</p>
             <div>
-                <label class="time" id="timer-min">00</label>
+                <i id="min-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="timer-min">00</label>
+                </div><br>
+                <i id="min-down" class="fas fa-caret-down icons"></i>
             </div>
-            <p>min</p>
+            <p class="special">min</p>
             <div>
-                <label class="time" id="timer-sec">00</label>
+                <i id="sec-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="timer-sec">00</label>
+                </div><br>
+                <i id="sec-down" class="fas fa-caret-down icons"></i>
             </div>
-            <p>sec</p>
+            <p class="special">sec</p>
         </div>
         <div class="button">
-            <button class="start" id="start-btn">Start</button>
-            <button class="start" id="pause-btn">Pause</button>
-            <button class="start" id="resume-btn">Resume</button>
-            <button id="cancel-btn">Cancel</button>
+            <button class="start special-btn" id="start-btn">Start</button>
+            <button class="start special-btn" id="pause-btn">Pause</button>
+            <button class="start special-btn" id="resume-btn">Resume</button>
+            <button class="special-btn" id="cancel-btn">Cancel</button>
         </div>
     </div>
 
@@ -100,22 +112,34 @@
 
     <!-- ***********ALARM*********** -->
     <div id="Alarm">
-        <div class="div-common">
+        <div class="div-common special-div">
             <div>
-                <label class="time" id="alarm-hours">12</label>
+                <i id="al-hrs-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="alarm-hours">12</label>
+                </div><br>
+                <i id="al-hrs-down" class="fas fa-caret-down icons"></i>
             </div>
-            <label class="colon">:</label>
+            <label id="special-colon" class="colon">:</label>
             <div>
-                <label class="time" id="alarm-min">00</label>
+                <i id="al-min-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="alarm-min">00</label>
+                </div><br>
+                <i id="al-min-down" class="fas fa-caret-down icons"></i>
             </div>
-            <div>
-                <label class="time am" id="alarm-am-pm">AM</label>
+            <div class="move">
+                <i id="ampm-change-up" class="fas fa-caret-up icons"></i><br><br>
+                <div>
+                    <label class="time" id="alarm-am-pm">AM</label>
+                </div><br>
+                <i id="ampm-change-down" class="fas fa-caret-down icons"></i>
             </div>
         </div>
-        <div class="button">
-            <button class="start" id="alarm-add-btn">Add</button>
-            <button id="alarm-clear-btn">Clear</button>
-            <button class="lap-reset" id="alarm-snooze-btn">Snooze</button>
+        <div class="button al-button">
+            <button class="start special-btn" id="alarm-add-btn">Add</button>
+            <button class="special-btn" id="alarm-clear-btn">Clear</button>
+            <button class="lap-reset special-btn" id="alarm-snooze-btn">Stop</button>
         </div>
         <div id="alarm-div">
         </div>
