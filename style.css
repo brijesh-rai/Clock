@@ -107,10 +107,9 @@ i{
     background-color: rgba(58, 58, 58, 0.2);
     border-radius: 15px ;
     padding: 5px 0;
-}
-.icons:hover{
     cursor: pointer;
 }
+
 .am-pm{
     margin-left: 20px;
 }
@@ -207,7 +206,9 @@ input{
 #alarm-snooze-btn{
     display: none;
 } 
-
+.timer-bgchange{
+    background-color:rgb(192, 0, 0) ;
+}
 @media screen and (max-width:768px) {
     .nav-bar{
         padding: 10px 10px;
@@ -251,10 +252,10 @@ input{
     }
     .special{
         padding: 0px 5px;
-        margin-top: 60px;
+        margin-top: 68px;
     }
     .move{
-        margin-left: 15px;
+        margin-left: 10px;
     }
     #special-colon{
         margin-top: 45px;

@@ -124,26 +124,71 @@ window.setInterval(function(){
         start_btn.style.cursor = "pointer"
     }
     else{
+        start_btn.removeEventListener("click",count)
         start_btn.style.cursor = "not-allowed"
     }
 },0)
+let timer_audio = new Audio("./timer_sound.wav")
+function play_3times(){
+    let i=0
+    let o=0
+    let play_sound = setInterval(function(){
+        if(++i>3000){
+            timer_audio.currentTime = 0
+            timer_audio.pause()
+            clearInterval(play_sound)
+        }
+        else{
+            timer_audio.play()
+        }
+    },o)
+
+    setTimeout(function(){
+        timer_sec.classList.remove("timer-bgchange")
+        timer_min.classList.remove("timer-bgchange")
+        timer_hrs.classList.remove("timer-bgchange")
+    },12000)
+}
+function notallowed(){
+    timer_sec.style.cursor = "not-allowed"
+    timer_min.style.cursor = "not-allowed"
+    timer_hrs.style.cursor = "not-allowed"
+    hrs_up.style.cursor = "not-allowed"
+    hrs_down.style.cursor = "not-allowed"
+    min_up.style.cursor = "not-allowed"
+    min_down.style.cursor = "not-allowed"
+    sec_up.style.cursor = "not-allowed"
+    sec_down.style.cursor = "not-allowed"
+}
 
 function count(){
+    
         cancel_btn.style.display = "block"
         start_btn.style.display = "none"
         pause_btn.style.display = "block"
-        timer_sec.style.cursor = "not-allowed"
-        timer_min.style.cursor = "not-allowed"
-        timer_hrs.style.cursor = "not-allowed"
+        notallowed()
         timer_sec.removeEventListener("mousewheel",scroll_sec)
         timer_hrs.removeEventListener("mousewheel",scroll_hrs)
         timer_min.removeEventListener("mousewheel",scroll_min)
+        hrs_up.removeEventListener("click",hours_up)
+        hrs_down.removeEventListener("click",hours_down)
+        min_up.removeEventListener("click",minutes_up)
+        min_down.removeEventListener("click",minutes_down)
+        sec_up.removeEventListener("click",seconds_up)
+        sec_down.removeEventListener("click",seconds_down)
             var a = setInterval(function(){
+            if(h==0 && m==1 && s==0){
+                timer_sec.classList.add("timer-bgchange")
+            }
             if(h == 0 && m == 0 && s == 0)
             {
+                timer_sec.classList.add("timer-bgchange")
+                timer_min.classList.add("timer-bgchange")
+                timer_hrs.classList.add("timer-bgchange")
                 cancel_btn.style.display = "none"
                 start_btn.style.display = "block"
                 pause_btn.style.display = 'none'
+                play_3times()
                 clearInterval(a)
                 cancel()
             }
