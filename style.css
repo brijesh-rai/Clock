@@ -268,4 +268,7 @@ input{
         margin-top: 50px;
         width: 80%;
     }
+    .special-btn{
+        margin-top: -10px !important;
+    }
 }
