@@ -177,7 +177,7 @@ function count(){
         sec_up.removeEventListener("click",seconds_up)
         sec_down.removeEventListener("click",seconds_down)
             var a = setInterval(function(){
-            if(h==0 && m==1 && s==0){
+            if(h==0 && m<=1 && (s<59 || s==0)){
                 timer_sec.classList.add("timer-bgchange")
             }
             if(h == 0 && m == 0 && s == 0)
