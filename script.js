@@ -78,18 +78,7 @@ function seconds_down(){
         timer_sec.textContent = s
     }
 }
-function addlistener(){
-    hrs_up.addEventListener("click",hours_up)
-    hrs_down.addEventListener("click",hours_down)
-    min_up.addEventListener("click",minutes_up)
-    min_down.addEventListener("click",minutes_down)
-    sec_up.addEventListener("click",seconds_up)
-    sec_down.addEventListener("click",seconds_down)
-    timer_hrs.addEventListener("mousewheel",scroll_hrs)
-    timer_min.addEventListener("mousewheel",scroll_min)
-    timer_sec.addEventListener("mousewheel",scroll_sec)
-}
-addlistener()
+
 // ******************Scroll Functionality for hours div*****************
 function scroll_hrs(e){
     if(e.wheelDelta<0){
@@ -139,6 +128,8 @@ function play_3times(){
     let o=0
     let play_sound = setInterval(function(){
         if(++i>3000){
+            allowed()
+            addlistener()
             timer_audio.currentTime = 0
             timer_audio.pause()
             clearInterval(play_sound)
@@ -149,13 +140,13 @@ function play_3times(){
     },o)
 
     setTimeout(function(){
-        allowed()
-        addlistener()
+        
         timer_sec.classList.remove("timer-bgchange")
         timer_min.classList.remove("timer-bgchange")
         timer_hrs.classList.remove("timer-bgchange")
     },12000)
 }
+// **********Cursor Not allowed function************
 function notallowed(){
     timer_sec.style.cursor = "not-allowed"
     timer_min.style.cursor = "not-allowed"
@@ -167,6 +158,7 @@ function notallowed(){
     sec_up.style.cursor = "not-allowed"
     sec_down.style.cursor = "not-allowed"
 }
+// ***************Allowed cursor pointer***************
 function allowed(){
     timer_sec.style.cursor = "pointer"
     timer_min.style.cursor = "pointer"
@@ -178,6 +170,22 @@ function allowed(){
     sec_up.style.cursor = "pointer"
     sec_down.style.cursor = "pointer"
 }
+
+// ***********Add Event listener Function*****************
+function addlistener(){
+    hrs_up.addEventListener("click",hours_up)
+    hrs_down.addEventListener("click",hours_down)
+    min_up.addEventListener("click",minutes_up)
+    min_down.addEventListener("click",minutes_down)
+    sec_up.addEventListener("click",seconds_up)
+    sec_down.addEventListener("click",seconds_down)
+    timer_hrs.addEventListener("mousewheel",scroll_hrs)
+    timer_min.addEventListener("mousewheel",scroll_min)
+    timer_sec.addEventListener("mousewheel",scroll_sec)
+}
+addlistener()
+
+// ***********Remove Event listener Function*****************
 function removelistener(){
     hrs_up.removeEventListener("click",hours_up)
     hrs_down.removeEventListener("click",hours_down)
@@ -189,6 +197,7 @@ function removelistener(){
     timer_hrs.removeEventListener("mousewheel",scroll_hrs)
     timer_min.removeEventListener("mousewheel",scroll_min)
 }
+
 let cancel_flag
 function count(){
         cancel_flag=0
@@ -198,14 +207,12 @@ function count(){
         notallowed()
         removelistener()
             var a = setInterval(function(){
-            if(h==0 && m<=1 && (s<59 || s==0)){
-                timer_sec.classList.add("timer-bgchange")
-            }
             if(h == 0 && m == 0 && s == 0)
             {
                 cancel_btn.style.display = "none"
                 start_btn.style.display = "block"
                 pause_btn.style.display = 'none'
+                
                 if(cancel_flag == 0){
                     timer_sec.classList.add("timer-bgchange")
                     timer_min.classList.add("timer-bgchange")
@@ -214,11 +221,10 @@ function count(){
                     play_3times()
                 }
                 else{
-                    cancel()
-                    
+                    allowed()
+                    addlistener()
                 }
-                clearInterval(a)
-                
+                clearInterval(a)   
             }
             else{
                 if(s!=0)
@@ -244,6 +250,9 @@ function count(){
                     s=59
                     timer_sec.innerText = s
                 }
+            }
+            if(h==0 && m==0 && s>0 && s<=59){
+                timer_sec.classList.add("timer-bgchange")
             }
             
         },1000)
@@ -288,10 +297,6 @@ function cancel(){
         timer_hrs.textContent = "00"
         timer_min.textContent = "00"
         timer_sec.textContent = "00"
-        start_btn.removeEventListener("click",count)
-        timer_sec.addEventListener("mousewheel",scroll_sec)
-        timer_min.addEventListener("mousewheel",scroll_min)
-        timer_hrs.addEventListener("mousewheel",scroll_hrs)
         timer_sec.style.cursor = "pointer"
         timer_min.style.cursor = "pointer"
         timer_hrs.style.cursor = "pointer"
@@ -303,11 +308,9 @@ function cancel(){
             timer_sec.classList.remove("timer-bgchange")
             timer_min.classList.remove("timer-bgchange")
             timer_hrs.classList.remove("timer-bgchange")
-            
         }
         
 }
-
 
 // *************Function for Clock**************
 setInterval(realtime,0)
@@ -534,7 +537,7 @@ function scroll_alarm_hrs(e){
         al_hours_up()
       }
       else if(e.wheelDelta>0){
-        al_hours_down
+        al_hours_down()
       }
 }
 
@@ -595,16 +598,19 @@ let snooze=1
         }  
     }
 },0)
-
-al_snooze.addEventListener("click",function(){
+// **********Alarm Stop button functionality**********
+al_snooze.addEventListener("click",al_stop)
+function al_stop(){
+    clearTimeout()
     snooze = 0
-     alarm_play.pause() 
-     alarm_play.currentTime = 0
-     setTimeout(function(){
-        snooze = 1
-     },15000)   
-})
+    alarm_play.currentTime = 0
+    alarm_play.pause() 
+    setTimeout(function(){
+    snooze = 1
+    },15000)   
+}
 
+// *************Alarm Add button Funtionality
 alarm_add_btn.addEventListener("click",function(){
     al_snooze.style.display = "block"
     let al_real_hr = Number(al_h)
@@ -650,9 +656,7 @@ alarm_add_btn.addEventListener("click",function(){
             }
             else{
                 ring_lbl.textContent = " rings in "+String(hh).padStart(2,"0")+" hr "+String(mm).padStart(2,"0")+" min"
-            }
-                
-            
+            } 
         }
     }
     let al_time = document.createElement("label")
@@ -675,6 +679,8 @@ alarm_clear_btn.addEventListener("click",function(){
             alarm_div.removeChild(alarm_div_childs[i+1])
             al_time_array.splice(i,1)
             lbl_id_array.splice(i,1)
+            alarm_play.pause() 
+            alarm_play.currentTime = 0
         }
         else{
             i++
