@@ -297,9 +297,6 @@ function cancel(){
         timer_hrs.textContent = "00"
         timer_min.textContent = "00"
         timer_sec.textContent = "00"
-        timer_sec.style.cursor = "pointer"
-        timer_min.style.cursor = "pointer"
-        timer_hrs.style.cursor = "pointer"
         cancel_btn.style.display = "none"
         start_btn.style.display = "block"
         pause_btn.style.display = 'none'
@@ -309,6 +306,8 @@ function cancel(){
             timer_min.classList.remove("timer-bgchange")
             timer_hrs.classList.remove("timer-bgchange")
         }
+        allowed()
+        addlistener()
         
 }
 
